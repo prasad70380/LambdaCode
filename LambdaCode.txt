@@ -1,0 +1,71 @@
+interface AreaNew {
+    void getArea();
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        // Area of all shapes is rounded off using Math.round function
+        new Traingle(7, 8, 9).getArea();
+        new Rectangle(5, 6).getArea();
+        new Circle(12).getArea();
+    }
+}
+
+class Traingle {
+    private int a, b, c;
+    private double s, area;
+
+    Traingle(int x, int y, int z) {
+        this.a = x;
+        this.b = y;
+        this.c = z;
+    }
+
+    AreaNew areaNewRef1 = () -> {
+        s = (a + b + c) / 2;
+        area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        System.out.println("The area of the triangle is : " + Math.round(area));
+    };
+
+    public void getArea() {
+        areaNewRef1.getArea();
+    }
+}
+
+class Rectangle {
+    private int l, b;
+    private double area;
+
+    Rectangle(int x, int y) {
+        this.l = x;
+        this.b = y;
+    }
+
+    AreaNew areaNewRef2 = () -> {
+        area = l * b;
+        System.out.println("The area of the rectangle is : " + Math.round(area));
+    };
+
+    public void getArea() {
+        areaNewRef2.getArea();
+    }
+}
+
+class Circle {
+    private int r;
+    private double area;
+
+    Circle(int x) {
+        this.r = x;
+    }
+
+    AreaNew areaNewRef3 = () -> {
+        area = (Math.PI) * (Math.pow(r, 2));
+        System.out.println("The area of the circle is : " + Math.round(area));
+    };
+
+    public void getArea() {
+        areaNewRef3.getArea();
+    }
+}
